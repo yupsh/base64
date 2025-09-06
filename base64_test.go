@@ -8,9 +8,10 @@ import (
 	"testing"
 	"time"
 
+	yup "github.com/yupsh/framework"
+
 	"github.com/yupsh/base64"
 	"github.com/yupsh/base64/opt"
-	yup "github.com/yupsh/framework"
 )
 
 // Example tests (basic functionality)
@@ -163,14 +164,14 @@ func TestBase64_ErrorConditions(t *testing.T) {
 			input := strings.NewReader(tt.input)
 			var output, stderr bytes.Buffer
 
-					var cmd yup.Command
-		if tt.decode {
-			cmd = base64.Base64(opt.Decode)
-		} else {
-			cmd = base64.Base64()
-		}
+			var cmd yup.Command
+			if tt.decode {
+				cmd = base64.Base64(opt.Decode)
+			} else {
+				cmd = base64.Base64()
+			}
 
-		err := cmd.Execute(ctx, input, &output, &stderr)
+			err := cmd.Execute(ctx, input, &output, &stderr)
 
 			if tt.wantError && err == nil {
 				t.Error("Expected error but got none")

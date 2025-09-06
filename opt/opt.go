@@ -5,18 +5,21 @@ type WrapWidth int
 
 // Boolean flag types with constants
 type DecodeFlag bool
+
 const (
 	Decode   DecodeFlag = true
 	NoDecode DecodeFlag = false
 )
 
 type IgnoreGarbageFlag bool
+
 const (
 	IgnoreGarbage   IgnoreGarbageFlag = true
 	NoIgnoreGarbage IgnoreGarbageFlag = false
 )
 
 type WrapFlag bool
+
 const (
 	Wrap   WrapFlag = true
 	NoWrap WrapFlag = false

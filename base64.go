@@ -10,6 +10,7 @@ import (
 
 	yup "github.com/yupsh/framework"
 	"github.com/yupsh/framework/opt"
+
 	localopt "github.com/yupsh/base64/opt"
 )
 
@@ -81,7 +82,7 @@ func (c command) encodeSource(ctx context.Context, reader io.Reader, output io.W
 
 	encoded := base64.StdEncoding.EncodeToString(allData)
 
-	if bool(c.Flags.Wrap) && int(c.Flags.WrapWidth) > 0 {
+	if (bool(c.Flags.Wrap) || int(c.Flags.WrapWidth) > 0) && int(c.Flags.WrapWidth) > 0 {
 		wrapped, err := c.wrapStringWithContext(ctx, encoded, int(c.Flags.WrapWidth))
 		if err != nil {
 			return err
