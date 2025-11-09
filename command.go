@@ -4,21 +4,21 @@ import (
 	"encoding/base64"
 	"strings"
 
-	yup "github.com/gloo-foo/framework"
+	gloo "github.com/gloo-foo/framework"
 )
 
-type command yup.Inputs[yup.File, flags]
+type command gloo.Inputs[gloo.File, flags]
 
-func Base64(parameters ...any) yup.Command {
-	cmd := command(yup.Initialize[yup.File, flags](parameters...))
+func Base64(parameters ...any) gloo.Command {
+	cmd := command(gloo.Initialize[gloo.File, flags](parameters...))
 	if cmd.Flags.WrapWidth == 0 {
 		cmd.Flags.WrapWidth = 76
 	}
 	return cmd
 }
 
-func (p command) Executor() yup.CommandExecutor {
-	return yup.LineTransform(func(line string) (string, bool) {
+func (p command) Executor() gloo.CommandExecutor {
+	return gloo.LineTransform(func(line string) (string, bool) {
 		if bool(p.Flags.Decode) {
 			// Decode mode
 			input := line
